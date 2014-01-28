@@ -1,5 +1,11 @@
 "use strict";
 
+function sendMessageToPage(message, callback) {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, message, callback);
+    });
+}
+
 function optionToHtml(option) {
    return '<option value="' + option.code + '">' + option.name + '</option>';
 }
@@ -10,7 +16,7 @@ function loadOptionData(name) {
 }
 
 function processHighlightResult(result) {
-    console.log(result);
+    sendMessageToPage({ type: 'hiliteme', html: result });
 }
 
 function hiliteme(evt) {
@@ -20,13 +26,10 @@ function hiliteme(evt) {
 }
 
 function loadSelectedSource() {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, { type: 'getSelectionText' }, function(response) {
-            $('[name=code]').val(response.source);
-        });
+    sendMessageToPage({ type: 'getSelectionText' }, function(response) {
+        $('[name=code]').val(response.source);
     });
 }
-
 
 $(function() {
     // Load data for laxers and styles 
@@ -39,4 +42,3 @@ $(function() {
     // Event Bindings
     $('#hiliteme').submit(hiliteme);
 });
-

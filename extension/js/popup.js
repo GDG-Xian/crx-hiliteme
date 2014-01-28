@@ -19,11 +19,24 @@ function hiliteme(evt) {
     return false;
 }
 
+function loadSelectedSource() {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, { type: 'getSelectionText' }, function(response) {
+            $('[name=code]').val(response.source);
+        });
+    });
+}
+
+
 $(function() {
     // Load data for laxers and styles 
     loadOptionData('lexer')
     loadOptionData('style')
 
+    // Load selected source code.
+    loadSelectedSource();
+
     // Event Bindings
     $('#hiliteme').submit(hiliteme);
 });
+

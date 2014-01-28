@@ -12,11 +12,19 @@
     },
 
     "permissions": [
-        "tabs", "<all_urls>"
+        "tabs", "http://hilite.me/api"
     ],
 
     "browser_action": {
         "default_icon": "icon/icon48.png",
         "default_popup": "popup.html"
-    }
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["js/contentscript.js"]
+        }
+    ]
+
 }

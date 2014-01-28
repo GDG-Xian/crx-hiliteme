@@ -1,23 +1,38 @@
 "use strict";
 
-function getActiveIframe() {
+var logPrefix = 'hiliteme:',
+    currentFrame = null;
+
+// Event Handlers {{{
+
+// When an iframe is focused, set activeIframe to it.
+function onIframeFocused() {
+    console.log(logPrefix, 'Iframe', this.location.href, 'focused.');
+    activeIframe = this;
+}
+
+// }}}
+
+function getSelectionText(request) {
+    var selection = '';
     var iframes = document.getElementsByTagName('iframe');
     for (var i = 0; i < iframes.length; i++) {
         var iframe = iframes[i];
-        if (iframe.contentDocument.body.contenteditable === 'true') {
-            return iframe;
-        }
+        try {
+            selection = iframe.contentWindow.getSelection();
+            if (selection && selection.type !== 'None') {
+                currentFrame = iframe;
+                return { source: selection.toString() };
+            }
+        } catch(e) { /* origin mismatch ignored */ }
     }
 }
 
-function getSelectionText(request) {
-    var editorFrame = getActiveIframe();
-    var text = editorFrame.getSelection().toString();
-    return { source: text };
-}
-
 function hiliteSelection(request) {
-    document.execCommand('insertHTML', false, request.html);
+    if (currentFrame) {
+        currentFrame.contentDocument.execCommand('insertHTML', false, request.html);
+        currentFrame = null;
+    }
 }
 
 var handlers = {
@@ -26,7 +41,9 @@ var handlers = {
 };
 
 function dispatcher(request, sender, sendResponse) {
-    sendResponse(handlers[request.type](request));
+    var response = handlers[request.type](request);
+    response && sendResponse(response);
 }
 
+// Event Bindings
 chrome.runtime.onMessage.addListener(dispatcher);

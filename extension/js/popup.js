@@ -16,7 +16,7 @@ function loadOptionData(name) {
 }
 
 function processHighlightResult(result) {
-    sendMessageToPage({ type: 'hiliteme', html: result });
+    sendMessageToPage({ type: 'hiliteSelection', html: result });
 }
 
 function hiliteme(evt) {
@@ -27,6 +27,7 @@ function hiliteme(evt) {
 
 function loadSelectedSource() {
     sendMessageToPage({ type: 'getSelectionText' }, function(response) {
+        console.log(response);
         $('[name=code]').val(response.source);
     });
 }

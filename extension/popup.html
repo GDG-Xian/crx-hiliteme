@@ -6,27 +6,23 @@
     <link rel="stylesheet" href="css/popup.css" type="text/css" />
   </head>
   <body>
-    <form id="hiliteme" action="">
+    <form id="hiliteme" action="javascript:;">
       <div id="source">
         <textarea name="code" rows="20"></textarea>
       </div>
 
       <div id="options">
-        <p>
-        Language: <select name="lexer"></select>
-        Style: <select name="style"></select>
-
-        <input name="linenos" type="checkbox" value="1" checked="checked">
-        <label for="linenos">Line numbers</label>
-
-        <br>
-
-        CSS:
-        <input type="text" name="divstyles"
-        value="border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-
-        <input type="submit" value="Highlight!">
-        </p>
+        <div class="row">
+          <label>Language <select name="lexer"></select></label>
+          <label>Styles <select name="style"></select></label>
+          <label><input name="linenos" type="checkbox" value="1" checked="checked"> Line numbers</label>
+        </div>
+        <div class="row">
+          <label>CSS <input type="text" name="divstyles" value="border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"></label>
+        </div>
+        <div class="form-actions">
+          <input type="submit" value="Highlight!">
+        </div>
       </div>
     </form>
 

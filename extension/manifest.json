@@ -12,7 +12,7 @@
     },
 
     "permissions": [
-        "tabs", "http://hilite.me/api"
+        "tabs", "storage", "http://hilite.me/api"
     ],
 
     "browser_action": {

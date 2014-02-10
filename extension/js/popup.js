@@ -54,7 +54,7 @@ function onOptionChanged(evt) {
 }
 
 function processHighlightResult(result) {
-    sendMessageToPage({ type: 'hiliteSelection', html: result });
+    sendMessageToPage({ type: 'hiliteSelection', html: result }, window.close);
 }
 
 function onHighlight(evt) {

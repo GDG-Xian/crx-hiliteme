@@ -13,7 +13,7 @@ function findActiveDocument(document) {
     activeElement = activeElement.contentDocument.activeElement;
   }
 
-  return focusedElem.ownerDocument;
+  return activeElement.ownerDocument;
 }
 
 // }}}

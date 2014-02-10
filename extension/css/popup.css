@@ -7,3 +7,4 @@ body { width: 600px; padding: 0; margin: 7px; }
 #options input[type="submit"] { width: 100px; }
 #options label { margin-right: 30px; }
 #options label:last-child { margin-right: 0; }
+footer { font-size: .8em; color: #888; text-align: right; }

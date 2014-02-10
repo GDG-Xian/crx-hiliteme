@@ -1,5 +1,10 @@
 "use strict";
 
+// Global Variables {{{
+var TPLS = {
+    CLOSE: '<a href="#" class="close" title="Close Preview"></a>' 
+};
+// }}}
 
 // Helper Methods {{{
 
@@ -48,7 +53,7 @@ function onOptionChanged(evt) {
 }
 
 function processHighlightResult(result) {
-    $('#preview').show().html(result);
+    $('#preview').show().html(result).prepend(TPLS.CLOSE);
     $('#source').hide();
 }
 

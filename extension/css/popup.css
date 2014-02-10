@@ -1,6 +1,6 @@
 body { width: 600px; padding: 0; margin: 7px; }
 #source textarea { width: 98%; height: 300px; margin: 0; padding: 1%; background: #fdfff4; }
-#preview { display: none; }
+[rel='preview'] { display: none; }
 #preview > div { height: 300px; }
 #preview .close { text-decoration: none; position: fixed; width: 16px; height: 16px;
     right: 12px; top: 12px; background: url(../img/cancel.png) center center no-repeat; }
@@ -9,6 +9,6 @@ body { width: 600px; padding: 0; margin: 7px; }
 #options .row { margin-bottom: 5px; }
 #options .form-actions { border-top: 1px solid #e2e2e2; text-align: center; padding-top: 5px; }
 #options input[name="divstyles"] { width: 548px; }
-#options input[type="submit"] { width: 100px; }
+#options input[type="submit"] { width: 150px; }
 #options label { margin-right: 30px; }
 #options label:last-child { margin-right: 0; }

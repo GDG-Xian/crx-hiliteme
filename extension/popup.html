@@ -7,8 +7,8 @@
   </head>
   <body>
     <form id="hiliteme" action="javascript:;">
-      <div id="source"><textarea name="code">print 'hello world!'</textarea></div>
-      <div id="preview"></div>
+      <div id="source" rel="source"><textarea name="code">print 'hello world!'</textarea></div>
+      <div id="preview" rel="preview"><a href="#" class="close" title="Close Preview"></a></div>
 
       <div id="options">
         <div class="row">
@@ -20,7 +20,8 @@
           <label>CSS <input type="text" name="divstyles" value="border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;" class="option"></label>
         </div>
         <div class="form-actions">
-          <input type="submit" value="Highlight!">
+          <input type="submit" rel="source" value="Preview Highlight!" />
+          <input type="button" rel="preview" class="close" value="Close Preview" />
         </div>
       </div>
     </form>

@@ -1,11 +1,5 @@
 "use strict";
 
-// Global Variables {{{
-var TPLS = {
-    CLOSE: '<a href="#" class="close" title="Close Preview"></a>' 
-};
-// }}}
-
 // Helper Methods {{{
 
 function optionToHtml(option) {
@@ -53,8 +47,15 @@ function onOptionChanged(evt) {
 }
 
 function processHighlightResult(result) {
-    $('#preview').show().html(result).prepend(TPLS.CLOSE);
-    $('#source').hide();
+    $('#preview').append(result);
+    $('[rel=source]').hide();
+    $('[rel=preview]').show();
+}
+
+function closePreview(evt) {
+    $('#preview > div').remove();
+    $('[rel=source]').show();
+    $('[rel=preview]').hide();
 }
 
 function onHighlight(evt) {
@@ -89,4 +90,5 @@ $(function() {
     $('#hiliteme').on('submit', onHighlight);
     $('.option').on('change', onOptionChanged);
     $('input.option[type=text]').on('input', onOptionChanged);
+    $(document).on('click', '.close', closePreview);
 });

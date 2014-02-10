@@ -47,13 +47,13 @@ function onOptionChanged(evt) {
 }
 
 function processHighlightResult(result) {
-    $('#preview').append(result);
+    $('#result').html(result);
     $('[rel=source]').hide();
     $('[rel=preview]').show();
 }
 
 function closePreview(evt) {
-    $('#preview > div').remove();
+    $('#result').empty();
     $('[rel=source]').show();
     $('[rel=preview]').hide();
 }
@@ -62,6 +62,16 @@ function onHighlight(evt) {
     var params = $(this).serialize();
     $.post('http://hilite.me/api', params, processHighlightResult);
     return false;
+}
+
+function copyHighlight(evt) {
+    var range = document.createRange();
+    range.selectNode($('#result').get(0));
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    document.execCommand('copy');
+    sel.removeAllRanges();
 }
 
 // }}}
@@ -90,5 +100,7 @@ $(function() {
     $('#hiliteme').on('submit', onHighlight);
     $('.option').on('change', onOptionChanged);
     $('input.option[type=text]').on('input', onOptionChanged);
-    $(document).on('click', '.close', closePreview);
+    $('.close').on('click', closePreview);
+    $('.copy').on('click', copyHighlight);
 });
+

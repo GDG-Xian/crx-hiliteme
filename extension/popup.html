@@ -8,7 +8,9 @@
   <body>
     <form id="hiliteme" action="javascript:;">
       <div id="source" rel="source"><textarea name="code">print 'hello world!'</textarea></div>
-      <div id="preview" rel="preview"><a href="#" class="close" title="Close Preview"></a></div>
+      <div id="preview" rel="preview"><div id="result"></div><a href="#" class="close" title="Close Preview"></a></div>
+
+      <div class="clear"></div>
 
       <div id="options" rel="source">
         <div class="row">
@@ -24,6 +26,7 @@
       <div class="form-actions">
         <input type="submit" rel="source" value="Preview Highlight!" />
         <input type="button" rel="preview" class="close" value="Close Preview" />
+        <input type="button" rel="preview" class="copy" value="Copy Highlight" />
       </div>
     </form>
 

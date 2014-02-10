@@ -1,7 +1,7 @@
 body { width: 600px; padding: 0; margin: 7px; }
+.clear { clear: both; }
 #source textarea { width: 98%; height: 300px; margin: 0; padding: 1%; background: #fdfff4; }
 [rel='preview'] { display: none; }
-#preview > div { height: 300px; }
 #preview .close { text-decoration: none; position: fixed; width: 16px; height: 16px;
     right: 12px; top: 12px; background: url(../img/cancel.png) center center no-repeat; }
 #preview .close:hover { opacity: 0.6; }

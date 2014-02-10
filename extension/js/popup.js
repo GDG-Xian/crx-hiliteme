@@ -3,12 +3,6 @@
 
 // Helper Methods {{{
 
-function sendMessageToPage(message, callback) {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, message, callback);
-    });
-}
-
 function optionToHtml(option) {
    return '<option value="' + option.code + '">' + option.name + '</option>';
 }
@@ -54,7 +48,8 @@ function onOptionChanged(evt) {
 }
 
 function processHighlightResult(result) {
-    sendMessageToPage({ type: 'hiliteSelection', html: result });
+    $('#preview').show().html(result);
+    $('#source').hide();
 }
 
 function onHighlight(evt) {
@@ -76,13 +71,6 @@ function loadStoredOptions() {
     }); 
 }
 
-function loadSelectedSource() {
-    sendMessageToPage({ type: 'getSelectionText' }, function(response) {
-        console.log(response);
-        $('[name=code]').val(response.source);
-    });
-}
-
 // }}}
 
 
@@ -90,9 +78,6 @@ $(function() {
     // Load data for laxers and styles 
     loadOptionData('lexer')
     loadOptionData('style')
-
-    // Load selected source code.
-    loadSelectedSource();
     loadStoredOptions();
 
     // Event Bindings

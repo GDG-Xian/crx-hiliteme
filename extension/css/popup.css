@@ -1,5 +1,7 @@
 body { width: 600px; padding: 0; margin: 7px; }
-#source textarea { width: 98%; margin: 0; padding: 1%; background: #fdfff4; }
+#source textarea { width: 98%; height: 300px; margin: 0; padding: 1%; background: #fdfff4; }
+#preview { display: none; }
+#preview > div { height: 300px; }
 #options { background: #ededed; width: 98%; padding: 7px; }
 #options .row { margin-bottom: 5px; }
 #options .form-actions { border-top: 1px solid #e2e2e2; text-align: center; padding-top: 5px; }

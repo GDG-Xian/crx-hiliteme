@@ -1,28 +1,20 @@
 "use strict";
 
-var logPrefix = 'hiliteme:',
-    currentFrame = null;
+var logPrefix = 'hiliteme:';
 
 // Helper Methods {{{
 
-// Get active element
+// Get active document
 // https://github.com/adam-p/markdown-here/blob/6f5222e45129db32838edd7e6e5c241d391f9de0/src/common/markdown-here.js#L28
 function findActiveDocument(document) {
-  var focusedElem = document.activeElement;
+  var activeElement = document.activeElement;
 
-  // If the focus is within an iframe, we'll have to drill down to get to the
-  // actual element.
-  while (focusedElem && focusedElem.contentDocument) {
-    focusedElem = focusedElem.contentDocument.activeElement;
+  while (activeElement && activeElement.contentDocument) {
+    activeElement = activeElement.contentDocument.activeElement;
   }
 
   return focusedElem.ownerDocument;
 }
-
-// }}}
-
-// Event Handlers {{{
-
 
 // }}}
 

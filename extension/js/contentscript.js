@@ -3,35 +3,40 @@
 var logPrefix = 'hiliteme:',
     currentFrame = null;
 
+// Helper Methods {{{
+
+// Get active element
+// https://github.com/adam-p/markdown-here/blob/6f5222e45129db32838edd7e6e5c241d391f9de0/src/common/markdown-here.js#L28
+function findActiveDocument(document) {
+  var focusedElem = document.activeElement;
+
+  // If the focus is within an iframe, we'll have to drill down to get to the
+  // actual element.
+  while (focusedElem && focusedElem.contentDocument) {
+    focusedElem = focusedElem.contentDocument.activeElement;
+  }
+
+  return focusedElem.ownerDocument;
+}
+
+// }}}
+
 // Event Handlers {{{
 
-// When an iframe is focused, set activeIframe to it.
-function onIframeFocused() {
-    console.log(logPrefix, 'Iframe', this.location.href, 'focused.');
-    activeIframe = this;
-}
 
 // }}}
 
 function getSelectionText(request) {
     var selection = '';
-    var iframes = document.getElementsByTagName('iframe');
-    for (var i = 0; i < iframes.length; i++) {
-        var iframe = iframes[i];
-        try {
-            selection = iframe.contentWindow.getSelection();
-            if (selection && selection.type !== 'None') {
-                currentFrame = iframe;
-                return { source: selection.toString() };
-            }
-        } catch(e) { /* origin mismatch ignored */ }
-    }
+    var activeDocument = findActiveDocument(document);
+    var selection = activeDocument.getSelection();
+    return { source: selection.toString() }
 }
 
 function hiliteSelection(request) {
-    if (currentFrame) {
-        currentFrame.contentDocument.execCommand('insertHTML', false, request.html);
-        currentFrame = null;
+    var activeDocument = findActiveDocument(document);
+    if (activeDocument) {
+        activeDocument.execCommand('insertHTML', false, request.html);
     }
 }
 

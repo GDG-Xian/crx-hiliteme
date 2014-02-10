@@ -39,7 +39,7 @@ var handlers = {
 
 function dispatcher(request, sender, sendResponse) {
     var response = handlers[request.type](request);
-    response && sendResponse(response);
+    sendResponse(response);
 }
 
 // Event Bindings

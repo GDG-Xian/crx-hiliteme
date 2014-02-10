@@ -11,4 +11,7 @@ Code highlight service is powered by http://hilite.me/
 - **Issues** https://github.com/GDG-Xian/crx-hiliteme/issues
 - **LICENSE** https://github.com/GDG-Xian/crx-hiliteme/blob/master/LICENSE
 
+**Install Hiliteme from [webstore]**
+
 [markdown-here]: http://markdown-here.com/
+[webstore]: https://chrome.google.com/webstore/detail/hilite-me/opdkneimogpljnhdedpppmoaljedhfib?utm_source=chrome-ntp-icon
